@@ -25,6 +25,9 @@
                         </div>
                         <div>
                             <%= f.submit t("login"), class: "btn btn-primary btn-block signin-button" %>
+                            <% if Rails.configuration.reset_password_link.present? %>
+                            <a href="<%= Rails.configuration.reset_password_link %>" title="<%= t("forgot_password.subtitle") %>" class="forget-pass"  target="_blank"><%= t("forgot_password.subtitle") %></a>
+                            <% end %>
                         </div>
                     <% end %>
                 </div>

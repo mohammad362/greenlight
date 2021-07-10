@@ -12,20 +12,30 @@
 # You should have received a copy of the GNU Lesser General Public License along
 # with BigBlueButton; if not, see <http://www.gnu.org/licenses/>.
 %>
-
+<script> 
+var feed = "<%= Rails.configuration.landing_page_rss_link %>";
+</script>
 <div class="background">
   <div class="container pt-9 pb-8">
     <div class="row">
       <div class="col-md-12 col-sm-12 text-center">
         <h1 id="main-text" class="display-4 mb-4"> <%= t("landing.welcome").html_safe %></h1>
         <p class="lead offset-lg-2 col-lg-8 col-sm-12 "><%= t("landing.about", href: link_to(t("greenlight"), "https://bigbluebutton.org/2018/07/09/greenlight-2-0/", target: "_blank", rel: "noopener")).html_safe %></p>
-        <%= link_to "https://youtu.be/Hso8yLzkqj8", target: "_blank" do %>
+        <%= link_to t("landing.learningUrl"), target: "_blank" do %>
           <h4><%= t("landing.video") %> <i class="far fa-play-circle ml-1"></i></h4>
+
+          <%= render "main/components/loginbutton" %>
+
         <% end %>
       </div>
 
     </div>
   </div>
 </div>
-
+<div class="clear container">
+<%= render "main/components/newsrss" %>
+<%= render "main/components/iframe" %>
+</div>
+<% if Rails.configuration.landing_page_show_featrues == true %>
 <%= render "main/components/features" %>
+<% end %>
